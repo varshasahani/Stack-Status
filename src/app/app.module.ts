@@ -5,21 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material.module';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { StatusComponent } from './status/status.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { firebaseConfig } from 'firebase.config';
+import { ServiceListComponent } from './service-list/service-list.component';
+import { EditServiceComponent } from './service-list/edit-service/edit-service.component';
+import { EditIncidentComponent } from './service-list/edit-incident/edit-incident.component';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    StatusComponent,
-    LoginComponent,
+    ServiceListComponent,
+    EditServiceComponent,
+    EditIncidentComponent,
+    ConfirmDeleteComponent,
     
   ],
   imports: [

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { AuthService } from '@auth0/auth0-angular';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditServiceComponent } from './service-list/edit-service/edit-service.component';
+import { EditIncidentComponent } from './service-list/edit-incident/edit-incident.component';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +11,18 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'stackStatus';
-  options = this._formBuilder.group({
-    bottom: 0,
-    fixed: false,
-    top: 0,
-  });
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(public auth: AuthService, private router: Router, public dialog: MatDialog) {}
+
+  openAddServiceDialog(): void {
+    const dialogRef = this.dialog.open(EditServiceComponent, {
+      width: '400px',
+      data: { isEditMode: false }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 
 }
