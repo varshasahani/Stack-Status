@@ -1,3 +1,9 @@
+<div class="container">
+  <h1>Service List</h1>
+  <div *ngIf="selectedApplicationName">
+    <h2>Selected Application: {{ selectedApplicationName }}</h2>
+  </div>
+<button class="shacdn-button shacdn-button-primary" (click)="openAddServiceDialog()">Add Service</button>
 <div class="shacdn-table-container">
     <table class="shacdn-table">
       <thead>
@@ -19,10 +25,14 @@
           <td>{{ service.timeline }}</td>
           <td data-label="Actions">
             <button (click)="viewService(service)">View</button>
-            <button class="shacdn-button shacdn-button-primary" (click)="openAddIncidentDialog()">Add Incident</button>
-            <button (click)="deleteService(service)">Delete</button>
+            <button class="shacdn-button shacdn-button-primary" (click)="editService(service)">Edit</button>
+            <button (click)="deleteService(service.id)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
+    <div *ngIf="services.length === 0">
+      <p>No services found for this application.</p>
+    </div>
+  </div>
   </div>

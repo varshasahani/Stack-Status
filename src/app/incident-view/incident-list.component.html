@@ -1,0 +1,32 @@
+<!-- filepath: /c:/Users/E2017567/Development/stackStatus/stackStatus/src/app/incident-view/incident-list.component.html -->
+<div class="container">
+  <h1>Incident List</h1>
+  <button class="shacdn-button shacdn-button-primary" (click)="openAddIncidentDialog()">Add Incident</button>
+  <div class="table-responsive">
+    <table *ngIf="incidents.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Incident Name</th>
+          <th>Resolved</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let incident of incidents">
+          <td data-label="Incident Name">{{ incident.name }}</td>
+          <td data-label="Resolved">{{ incident.resolved }}</td>
+          <td data-label="Start Date">{{ incident.startdate }}</td>
+          <td data-label="End Date">{{ incident.enddate }}</td>
+          <td data-label="Actions">
+            <button class="shacdn-button shacdn-button-primary" (click)="editIncident(incident)">Edit</button>
+            <button (click)="deleteIncident(incident.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="incidents.length === 0">
+    <p>No incidents found for this service.</p>
+  </div>
+</div>

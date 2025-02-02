@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-edit-service',
@@ -9,42 +11,74 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class EditServiceComponent implements OnInit {
   serviceForm: FormGroup;
-  isEditMode: boolean;
+  isEditMode: boolean = false;
+  serviceId: number;
+  applicationId: number;
+  applicationName: any;
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditServiceComponent>,
+    private applicationService: ApplicationService,
+    private route:ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.applicationId = data.applicationId;
     this.isEditMode = data.isEditMode;
+    this.serviceId = data.serviceId;
+  }
+
+  ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   this.applicationId = +params['appId'];
+    //   console.log('app',this.applicationId)
+    //   // const selectedApplication = this.sharedService.getSelectedApplication();
+    //   // if (selectedApplication && selectedApplication.id === this.applicationId) {
+    //   //   this.applicationName = selectedApplication.name;
+    //   // } else {
+    //   //   // Handle case where application details are not available
+    //   //   this.applicationName = 'Unknown Application';
+    //   // }
+    // });
     this.serviceForm = this.fb.group({
       name: ['', Validators.required],
       status: ['', Validators.required]
     });
-  }
 
-  ngOnInit(): void {
     if (this.isEditMode) {
-      // Fetch the service details and populate the form
-      // For example:
-      // this.serviceService.getServiceById(this.data.serviceId).subscribe(service => {
-      //   this.serviceForm.patchValue(service);
-      // });
+      // Load the service details and populate the form
+      this.loadServiceDetails();
     }
   }
 
+  loadServiceDetails(): void {
+    // Fetch the service details from the backend and populate the form
+    this.applicationService.getServiceById(this.serviceId).subscribe(service => {
+      this.serviceForm.patchValue(service);
+    });
+  }
+
+
   onSubmit(): void {
     if (this.serviceForm.valid) {
+      const serviceData = {
+        ...this.serviceForm.value,
+        applicationId: this.applicationId
+      };
+    console.log('app0',this.applicationId)
+
       if (this.isEditMode) {
         // Update the service
-        // this.serviceService.updateService(this.serviceForm.value).subscribe(() => {
-        //   this.dialogRef.close();
-        // });
+        this.applicationService.editService({ id: this.serviceId, ...serviceData }).subscribe(() => {
+          console.log('Service updated');
+          this.dialogRef.close();
+        });
       } else {
         // Add a new service
-        // this.serviceService.addService(this.serviceForm.value).subscribe(() => {
-        //   this.dialogRef.close();
-        // });
+        this.applicationService.addService(serviceData).subscribe(response => {
+          console.log('Service added:', response);
+          this.dialogRef.close();
+        });
       }
     }
   }

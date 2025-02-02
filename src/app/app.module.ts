@@ -12,9 +12,12 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { firebaseConfig } from 'firebase.config';
 import { ServiceListComponent } from './service-list/service-list.component';
 import { EditServiceComponent } from './service-list/edit-service/edit-service.component';
-import { EditIncidentComponent } from './service-list/edit-incident/edit-incident.component';
+import { EditIncidentComponent } from './incident-view/edit-incident/edit-incident.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { ApplicationViewComponent } from './application-view/application-view.component';
+import { AddApplicationComponent } from './application-view/add-application/add-application.component';
+import { IncidentListComponent } from './incident-view/incident-list.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { ApplicationViewComponent } from './application-view/application-view.co
     EditIncidentComponent,
     ConfirmDeleteComponent,
     ApplicationViewComponent,
+    AddApplicationComponent,
+    IncidentListComponent,
     
   ],
   imports: [
@@ -43,7 +48,7 @@ import { ApplicationViewComponent } from './application-view/application-view.co
       }
     })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

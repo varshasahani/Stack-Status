@@ -1,7 +1,8 @@
 <div class="shacdn-container">
     <h1 class="shacdn-title">Applications</h1>
+    <button mat-raised-button color="primary" (click)="openAddApplicationDialog()">Add Application</button>
     <div class="shacdn-row">
-      <div *ngFor="let app of applications" class="shacdn-col-12 shacdn-col-md-6 shacdn-col-lg-4">
+      <div *ngFor="let app of applications" class="shacdn-col-12 shacdn-col-md-6 shacdn-col-lg-4" (click)="selectApplication(app)">
         <a [routerLink]="['/services', app.id]" class="shacdn-card-link">
         <div class="shacdn-card">
           <div class="shacdn-card-header">
@@ -11,6 +12,7 @@
           <div class="shacdn-card-content">
             <p>{{ app.description }}</p>
           </div>
+          <button mat-button color="warn" (click)="deleteApplication(app.id)">Delete</button>
         </div>
     </a>
       </div>
