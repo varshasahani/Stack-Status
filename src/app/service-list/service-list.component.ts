@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditIncidentComponent } from './edit-incident/edit-incident.component';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-service-list',
@@ -9,6 +10,7 @@ import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.compone
   styleUrls: ['./service-list.component.sass']
 })
 export class ServiceListComponent {
+  applicationId: string;
   services = [
     { name: 'API Gateway', status: 'Operational', recentIncident: 'None', active: 'Yes', timeline: '24h' },
     { name: 'Authentication Service', status: 'Degraded', recentIncident: 'Issue 123', active: 'No', timeline: '48h' },
@@ -17,10 +19,19 @@ export class ServiceListComponent {
     { name: 'Notification Service', status: 'Operational', recentIncident: 'None', active: 'Yes', timeline: '24h' }
   ];
 
-  constructor( public dialog: MatDialog){}
+  constructor( public dialog: MatDialog, private route: ActivatedRoute,){}
     viewService(service: any) {
     // Implement view logic here
     console.log('Viewing service:', service);
+  }
+
+  ngOnInit(): void {
+    this.applicationId = this.route.snapshot.paramMap.get('appId');
+    // Fetch the services for the application using the applicationId
+    // For example:
+    // this.applicationService.getServices(this.applicationId).subscribe(services => {
+    //   this.services = services;
+    // });
   }
 
   editService(service: any) {

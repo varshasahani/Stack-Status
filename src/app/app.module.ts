@@ -14,6 +14,7 @@ import { ServiceListComponent } from './service-list/service-list.component';
 import { EditServiceComponent } from './service-list/edit-service/edit-service.component';
 import { EditIncidentComponent } from './service-list/edit-incident/edit-incident.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { ApplicationViewComponent } from './application-view/application-view.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
     EditServiceComponent,
     EditIncidentComponent,
     ConfirmDeleteComponent,
+    ApplicationViewComponent,
     
   ],
   imports: [

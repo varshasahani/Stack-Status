@@ -1,0 +1,18 @@
+<div class="shacdn-container">
+    <h1 class="shacdn-title">Applications</h1>
+    <div class="shacdn-row">
+      <div *ngFor="let app of applications" class="shacdn-col-12 shacdn-col-md-6 shacdn-col-lg-4">
+        <a [routerLink]="['/services', app.id]" class="shacdn-card-link">
+        <div class="shacdn-card">
+          <div class="shacdn-card-header">
+            <img [src]="app.logoUrl" alt="{{ app.name }} Logo" class="app-logo">
+            <h2>{{ app.name }}</h2>
+          </div>
+          <div class="shacdn-card-content">
+            <p>{{ app.description }}</p>
+          </div>
+        </div>
+    </a>
+      </div>
+    </div>
+  </div>

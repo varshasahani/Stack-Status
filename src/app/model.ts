@@ -1,30 +1,31 @@
-export interface IMovie {
-    id: number,
-    name: string,
-    releaseDate: string,
-    langauge: string,
-    image: string,
-    description: string,
-    dates: { [key: string]: Slots }
-}
-
-export interface Slots {
-    slots: { [key: string]: number }
-}
 export interface IUser {
     id: number,
     name: string,
     email: string
 }
 
+export interface Application {
+    id: string;
+    name: string;
+    logoUrl:string
+    description: string;
+    services: Service[];
+  }
 
-export interface IMovieForm {
-    id: number
-    userId: number,
-    movieId: number,
-    date: string
-    movieName: string,
-    time: string,
-    seats: number,
-    price: number,
-}
+  export interface Incident {
+    id: string;
+    name: string;
+    resolved: boolean;
+    startDate: Date;
+    endDate: Date;
+  }
+
+  export interface Service {
+    id: string;
+    name: string;
+    status: string;
+    recentIncident: string;
+    active: boolean;
+    timeline: string;
+    incidents: Incident[];
+  }
