@@ -19,11 +19,6 @@ export class ServiceListComponent {
   applicationName: string;
 
   constructor( public dialog: MatDialog, private route: ActivatedRoute,private sharedService: SharedService,private router: Router,private applicationService: ApplicationService){}
-    viewService(service: any) {
-      this.router.navigate(['/incidents', service.id]);
-    // Implement view logic here
-    console.log('Viewing service:', service);
-  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -39,6 +34,12 @@ export class ServiceListComponent {
       }
     });
   }
+
+  viewService(service: any) {
+    this.router.navigate(['/incidents', service.id]);
+  console.log('Viewing service:', service);
+}
+
   fetchServicesByApplicationId(applicationId: number): void {
     this.applicationService.getServicesByApplicationId(applicationId).subscribe(services => {
       this.services = services;
@@ -46,7 +47,6 @@ export class ServiceListComponent {
   }
 
   editService(service: any) {
-    // Implement edit logic here
     const dialogRef = this.dialog.open(EditServiceComponent, {
       width: '400px',
       data: { isEditMode: true, applicationId: this.applicationId, serviceId: service.id }

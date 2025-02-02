@@ -20,7 +20,6 @@ export class EditServiceComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditServiceComponent>,
     private applicationService: ApplicationService,
-    private route:ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.applicationId = data.applicationId;
@@ -29,17 +28,6 @@ export class EditServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   this.applicationId = +params['appId'];
-    //   console.log('app',this.applicationId)
-    //   // const selectedApplication = this.sharedService.getSelectedApplication();
-    //   // if (selectedApplication && selectedApplication.id === this.applicationId) {
-    //   //   this.applicationName = selectedApplication.name;
-    //   // } else {
-    //   //   // Handle case where application details are not available
-    //   //   this.applicationName = 'Unknown Application';
-    //   // }
-    // });
     this.serviceForm = this.fb.group({
       name: ['', Validators.required],
       status: ['', Validators.required]

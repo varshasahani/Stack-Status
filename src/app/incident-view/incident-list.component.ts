@@ -17,14 +17,11 @@ export class IncidentListComponent implements OnInit {
   incidents: any[] = [];
   serviceId: number;
   isLoading: boolean = false;
-  private wsSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private applicationService: ApplicationService,
-    private sharedService: SharedService,
     public dialog: MatDialog,
-    private webSocketService: WebSocketService,
   ) {}
 
   ngOnInit(): void {
@@ -53,7 +50,6 @@ export class IncidentListComponent implements OnInit {
   }
 
     editIncident(incident: any) {
-      // Implement edit logic here
       const dialogRef = this.dialog.open(EditIncidentComponent, {
         width: '400px',
         data: { isEditMode: true, serviceId: this.serviceId,incidentId: incident.id }

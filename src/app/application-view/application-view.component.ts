@@ -46,7 +46,6 @@ export class ApplicationViewComponent implements OnInit {
   }
 
   selectApplication(application): void {
-    console.log('nameee',name)
     this.sharedService.setSelectedApplication(application);
   }
 }

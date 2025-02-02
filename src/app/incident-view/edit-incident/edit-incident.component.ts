@@ -71,11 +71,6 @@ export class EditIncidentComponent implements OnInit {
       const startDate = this.datePipe.transform(this.incidentForm.value.startDate, 'yyyy-MM-dd');
       const endDate = this.datePipe.transform(this.incidentForm.value.endDate, 'yyyy-MM-dd');
 
-      // if (!startDate || !endDate) {
-      //   console.error('Invalid date value');
-      //   return;
-      // }
-
       const incidentData = {
         ...this.incidentForm.value,
         startDate: startDate,

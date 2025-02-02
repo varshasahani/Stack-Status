@@ -19,6 +19,7 @@ export class UserService {
   getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(this._url);
   }
+  
   setUser(user: IUser) {
     localStorage.setItem('user', JSON.stringify(user))
     this.user.next(user)
