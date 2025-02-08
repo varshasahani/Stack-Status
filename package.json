@@ -26,7 +26,6 @@
     "@angular/router": "^15.2.0",
     "@auth0/auth0-angular": "^2.2.3",
     "express": "^4.21.2",
-    "firebase-tools": "^13.29.3",
     "path": "^0.12.7",
     "pg": "^8.13.1",
     "rxjs": "~7.8.0",

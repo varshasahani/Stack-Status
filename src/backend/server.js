@@ -1,16 +1,20 @@
 // filepath: /c:/Users/E2017567/Development/stackStatus/stackStatus/src/backend/server.js
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const { Pool } = require('pg');
 const cors = require('cors');
 const WebSocket = require('ws');
 const app = express();
-const port = process.env.PORT || 3000;
+
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('./dist/stackStatus'));
-
+app.use(express.static(path.join(__dirname, 'dist/stack-status')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/stack-status/index.html'));
+});
+const port = process.env.PORT || 3000;
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
