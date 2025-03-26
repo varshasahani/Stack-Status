@@ -1,0 +1,25 @@
+<div class="main">
+  <div class="shacdn-navbar">
+    <div class="shacdn-navbar-brand">Stack Status</div>
+    <div class="shacdn-navbar-spacer"></div>
+    <button
+      class="shacdn-button shacdn-button-primary"
+      *ngIf="!(auth.isAuthenticated$ | async); else logoutButton"
+      (click)="auth.loginWithPopup()"
+    >
+      Log In
+    </button>
+    <ng-template #logoutButton>
+      <button
+        class="shacdn-button shacdn-button-secondary"
+        *ngIf="auth.isAuthenticated$ | async"
+        (click)="auth.logout()"
+      >
+        Log Out
+      </button>
+    </ng-template>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

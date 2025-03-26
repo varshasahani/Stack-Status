@@ -1,0 +1,55 @@
+.main
+  display: flex
+  flex-direction: column
+  height: 100vh
+
+.shacdn-navbar
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 10px 20px
+  background-color: #007bff
+  color: #fff
+
+.shacdn-navbar-brand
+  font-size: 1.5em
+  font-weight: bold
+
+.shacdn-navbar-spacer
+  flex: 1
+
+.content
+  flex: 1
+  padding: 16px
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  gap: 10px
+
+.shacdn-button
+  padding: 10px 20px
+  border: none
+  border-radius: 4px
+  cursor: pointer
+
+.shacdn-button-primary
+  background-color: #007bff
+  color: #fff
+
+.shacdn-button-secondary
+  background-color: #6c757d
+  color: #fff
+
+.shacdn-button:hover
+  opacity: 0.9
+
+@media (max-width: 600px)
+  .shacdn-navbar
+    flex-direction: column
+    align-items: flex-start
+
+  .shacdn-navbar-brand
+    text-align: left
+
+  .content
+    padding: 8px

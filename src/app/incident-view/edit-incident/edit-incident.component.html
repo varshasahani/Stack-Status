@@ -1,0 +1,32 @@
+<form [formGroup]="incidentForm" (ngSubmit)="onSubmit()" class="shacdn-form">
+    <div class="shacdn-card">
+      <div class="shacdn-card-header">
+        <h2>{{ isEditMode ? 'Edit Incident' : 'Add Incident' }}</h2>
+      </div>
+      <div class="shacdn-card-content">
+        <div class="shacdn-form-field">
+          <label for="name">Incident Name</label>
+          <input id="name" type="text" formControlName="name" required>
+        </div>
+        <div class="shacdn-form-field">
+          <label for="resolved">Resolved</label>
+          <select id="resolved" formControlName="resolved" required>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div>
+        <div class="shacdn-form-field">
+          <label for="startdate">Start Date</label>
+          <input id="startdate" type="date" formControlName="startdate" required>
+        </div>
+        <div class="shacdn-form-field">
+          <label for="enddate">End Date</label>
+          <input id="enddate" type="date" formControlName="enddate" required>
+        </div>
+      </div>
+      <div class="shacdn-card-actions">
+        <button type="submit" class="shacdn-button shacdn-button-primary">{{ isEditMode ? 'Update' : 'Add' }}</button>
+        <button type="button" class="shacdn-button" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
